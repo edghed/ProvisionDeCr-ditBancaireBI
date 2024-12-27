@@ -1,0 +1,47 @@
+<mat-toolbar class="mat-elevation-z8" fxLayoutAlign="center center center">
+    <img  class="img-responsive" fxLayoutAlign="center center center" src="assets/logo-axefinance.png">
+</mat-toolbar>
+
+<mat-sidenav-container  autosize> 
+    <mat-sidenav class="mat-elevation-z8" #drawer mode="side" opened>
+        <img class="avatar mat-elevation-z8" [src]="url ? url : 'https://source.unsplash.com/c_GmwfHBDzk/200x200'" />
+
+        <h4 class="name">{{name}}</h4>
+        <p class="designation">{{position}}</p>
+
+        <mat-divider></mat-divider> 
+        <mat-nav-list>
+            <mat-list-item [routerLink]="['/dashboards']" routerLinkActive="active">
+                <mat-icon>dashboard</mat-icon>
+                <span>Dashboards</span>
+            </mat-list-item>
+            <mat-list-item *ngIf="authService.roleMatch('ROLE_ADMIN')" [routerLink]="['/users']" routerLinkActive="active">
+                <mat-icon>supervised_user_circle</mat-icon>
+                <span>Users</span>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['/profile']" routerLinkActive="active">
+                <mat-icon>person</mat-icon>
+                <span>Profile</span>
+            </mat-list-item>
+            <mat-list-item [routerLink]="['/about']" routerLinkActive="active">
+                <mat-icon>info</mat-icon>
+            <span>About</span>
+            </mat-list-item>
+            <mat-divider></mat-divider> 
+
+            <mat-list-item (click)="logout()" routerLinkActive="active">
+                <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+            </mat-list-item>
+        </mat-nav-list>
+        
+
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content mat-elevation-z8" >
+            <router-outlet></router-outlet>
+
+        </div>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

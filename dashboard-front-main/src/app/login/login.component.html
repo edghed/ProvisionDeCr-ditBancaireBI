@@ -1,0 +1,23 @@
+<div fxLayoutAlign="center center" class="main-container"  fxFlexFill>
+    <mat-card fxFlex="25"  >
+        <mat-toolbar color="primary" class="logo-toolbar" fxLayoutAlign="center center">
+                <img  class="img-responsive" fxLayoutAlign="center center center" src="assets/logo-axefinance.png">
+            
+        </mat-toolbar>
+        
+        <form inputmode="login-form" fxLayoutAlign="stretch" fxLayout="column" 
+        class="login-form" [formGroup]="formGroup" (ngSubmit)="loginProcess()" layout-margin>
+            
+        <mat-form-field appearance="fill" class="input">
+                <mat-label>Enter your username</mat-label>
+                <input matInput placeholder="username" formControlName="username" required>
+            </mat-form-field>
+            <span></span>
+            <mat-form-field appearance="fill" class="input">
+                <mat-label>Enter your password</mat-label>
+                <input matInput type="password" placeholder="password" formControlName="password">
+            </mat-form-field>
+            <button mat-raised-button type="submit" >Login</button>
+        </form>
+    </mat-card>
+</div>

@@ -1,0 +1,72 @@
+<mat-card class="container">
+    <h1>Profile</h1>
+    <span></span>
+    <span></span>
+    <form class="form" fxLayout="column" fxLayoutAlign="center center center" (ngSubmit)="submit" #formControl="ngForm">
+
+        <div class="form">
+            <label class="hoverable" for="fileInput">
+                <img [src]="url ? url : 'https://source.unsplash.com/c_GmwfHBDzk/200x200'">
+                <div class="hover-text">Choose file</div>
+                <div class="background"></div>
+            </label>
+            <br />
+            <input id="fileInput" type='file' (change)="onSelectFile($event)">
+            <button mat-button *ngIf="url" (click)="delete()">
+                <mat-icon color="error">delete</mat-icon>
+            </button>
+
+
+        </div>
+
+        <div class="name" fxLayout="row">
+            <div class="form">
+                <mat-form-field color="primary">
+                    <input matInput #input placeholder="username" [(ngModel)]="data.username" name="username" disabled
+                        required>
+                </mat-form-field>
+            </div>
+            <div class="form">
+                <mat-form-field color="primary">
+                    <input matInput #input placeholder="First Name" [(ngModel)]="data.firstName" name="fitstName">
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="form">
+                <mat-form-field color="primary">
+                    <input matInput #input placeholder="Last Name" [(ngModel)]="data.lastName" name="lastName">
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="name" fxLayout="row">
+            <div class="form">
+                <mat-form-field color="primary">
+                    <input matInput #input placeholder="Email" [(ngModel)]="data.email" name="email" required>
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+
+
+            <div class="form">
+                <mat-form-field color="primary">
+                    <input matInput type="password" #input placeholder="Password" [(ngModel)]="data.password"
+                        name="password">
+
+                    <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <input matInput #input placeholder="Position" [(ngModel)]="data.position" name="position">
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button type="submit" [disabled]="!formControl.valid" (click)="submit()">Save</button>
+    </form>
+</mat-card>

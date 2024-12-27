@@ -1,0 +1,82 @@
+<div class="container">
+
+  <div class="form">
+    <mat-form-field floatPlaceholder="never" color="accent">
+      <input matInput #filter placeholder="Filter users">
+    </mat-form-field>
+  </div>
+  <mat-table [dataSource]="data" matSort class="mat-cell">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="password">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Password </mat-header-cell>
+      <mat-cell *matCellDef="let element"> - </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="roles">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Role </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.roles.join(', ')}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="active">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Active </mat-header-cell>
+      <mat-cell *matCellDef="let element"><mat-icon>{{element.active? 'check':'close'}}</mat-icon>  </mat-cell>
+    </ng-container>
+
+    <!-- actions -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="primary" (click)="addNew()">
+          <mat-icon aria-label="Example icon-button with a heart icon">add</mat-icon>
+        </button>
+      </mat-header-cell>
+
+      <mat-cell *matCellDef="let row; let i=index;">
+        <button mat-icon-button color="primary" (click)="editItem(i,row.id,row.username,row.email,row.password,row.active,row.roles)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="accent" (click)="deleteItem(i,row.id,row.username)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <div class="no-results" [style.display]="data.length == 0 ? '' : 'none'">
+    No results
+  </div>
+
+  <mat-paginator #paginator
+                 [length]="data.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+
+</div>

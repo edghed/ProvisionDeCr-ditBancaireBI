@@ -1,0 +1,63 @@
+<div class="container">
+    <h2 mat-dialog-title>Edit User</h2>
+
+    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <input matInput #input  placeholder="id" [(ngModel)]="data.id"
+                    name="id" disabled required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+        
+        <div class="form">
+            <mat-form-field color="primary">
+                <input matInput #input  placeholder="username" [(ngModel)]="data.username"
+                    name="username" required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <input matInput #input  placeholder="Email" [(ngModel)]="data.email" name="email"
+                    required>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field color="primary">
+                <input matInput type="password" #input  placeholder="Password" [(ngModel)]="data.password"
+                    name="password">
+                
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="form">
+            <mat-form-field  color="primary">
+
+            <mat-label>Roles</mat-label>
+            <mat-select [(ngModel)]="data.roles" name="role" multiple>
+                <mat-option *ngFor="let role of roleList" [value]="role">{{role}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!--Contains mat-hint for characters count and has maxLengt set-->
+
+        <div class="form">
+            <mat-slide-toggle color="primary" [(ngModel)]="data.active" name="active" [checked]="data.active">
+                Active user
+            </mat-slide-toggle>
+        </div>
+
+        <div mat-dialog-actions>
+            <button mat-button type="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+                (click)="confirmEdit()">Save</button>
+            <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+        </div>
+    </form>
+</div>

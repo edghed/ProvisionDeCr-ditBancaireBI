@@ -1,0 +1,46 @@
+.login-form {
+    
+    width: 100%;
+    gap: 30%;
+    
+  }
+
+  .mat-card{
+    opacity: 95%;
+  }
+
+  .input{
+    margin-bottom: 10px;
+  }
+
+  .logo-toolbar{
+    height: 100px;
+    margin-bottom: 50px;
+    background-color: #52898b;
+    color:beige;
+  }
+
+  .mat-raised-button{
+    background-color: #52898b;
+    color:beige;
+  }
+
+  .main-container{
+    background-image: url("../../assets/KI-buehnejpg.jpg");
+    background-size: auto;
+  }
+
+  .img-responsive{
+    min-width:100px;
+    max-width:150px;
+    width:45%
+  }
+
+  .logo-container {
+    
+    height: max-content;
+    align-self: center center;
+    align-items: center;
+    align-content: center center;
+  }
+  html { background-color:#e0e0ea; }
